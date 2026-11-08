@@ -13,7 +13,7 @@
 
 **全向移动 × 机械臂取放 × 双相机视觉 × 多板协同**
 
-[实物展示](#-实物展示) · [任务流程](#-任务流程) · [系统架构](#-系统架构) · [工程亮点](#-工程亮点)
+[实物展示](#-实物展示) · [任务流程](#-任务流程) · [系统架构](#-系统架构) · [硬件设计](#-硬件设计) · [工程亮点](#-工程亮点)
 
 </div>
 
@@ -42,22 +42,6 @@
 
 <a href="docs/assets/task-flow.png"><img src="docs/assets/task-flow.png" width="100%" alt="两行排列的八阶段任务流程图"></a>
 
-<details>
-<summary>展开查看各阶段任务</summary>
-
-| 阶段 | 任务 |
-| --- | --- |
-| 01 出发与行驶 | 红蓝场路线行驶与姿态调整 |
-| 02 圆盘撞球 | 白线定位、颜色识别与撞球 |
-| 03 墙面识字 | 识别字母组合，超时采用预选组合 |
-| 04 阶梯取放 | 入口定位、识别、对准与抓取 |
-| 05 分类卸货 | 分别投放圆球和方块 |
-| 06 圆环投放 | 贴仓、库边定位与放环 |
-| 07 立桩取放 | 多观察位转站、识别与取放 |
-| 08 卸货与回零 | 后续卸货与原点纠偏 |
-
-</details>
-
 ## 🛠️ 系统架构
 
 视觉感知、任务调度与执行控制分工，通过状态反馈协调底盘和机械臂。
@@ -70,6 +54,20 @@
 | **感知与定位** | 里程、航向、白线及库边反馈 | 从动轮编码器、IMU、IR |
 | **双相机视觉** | 工件、白线与墙面字母识别 | 双 MaixCAM |
 | **机械臂与料仓** | 姿态切换、抓取与分类投放 | 机械臂控制板、夹爪、分类料仓 |
+
+## 🔌 硬件设计
+
+围绕 STM32F407ZGT6 最小系统板设计扩展板，集中引出舵机、电源、IMU、BLE 和板间串口接口，方便整机接线与联调。
+
+### 扩展板原理图
+
+<a href="docs/assets/f407-expansion-schematic.png"><img src="docs/assets/f407-expansion-schematic.png" width="100%" alt="STM32F407ZGT6扩展板原理图，包含电源、舵机、IMU与串口接口"></a>
+
+### PCB 布局与布线
+
+<a href="docs/assets/f407-expansion-pcb.png"><img src="docs/assets/f407-expansion-pcb.png" width="100%" alt="扩展板PCB布局布线图"></a>
+
+两张图片均可点击查看原图，放大阅读引脚、接口标注和走线细节。
 
 ## ⚙️ 工程亮点
 
@@ -116,7 +114,9 @@ robocup-2026-sorting-robot-showcase/
     ├── robot-overview.jpg
     ├── robot-integration.jpg
     ├── task-flow.png
-    └── system-architecture.png
+    ├── system-architecture.png
+    ├── f407-expansion-schematic.png
+    └── f407-expansion-pcb.png
 ```
 
 展示资料未授予通用开源许可证。如需转载或使用，请通过 [GitHub](https://github.com/nikezi623) 联系作者。
