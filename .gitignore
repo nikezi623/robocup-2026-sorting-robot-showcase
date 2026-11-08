@@ -1,0 +1,20 @@
+# Keep source projects, firmware, raw recordings and local configuration out.
+*.mp4
+*.mov
+*.avi
+*.hex
+*.bin
+*.elf
+*.axf
+*.uvprojx
+*.uvoptx
+*.c
+*.h
+*.cpp
+*.py
+*.zip
+*.log
+.env*
+Thumbs.db
+.DS_Store
+*.tmp
